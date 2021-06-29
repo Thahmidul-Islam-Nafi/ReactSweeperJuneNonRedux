@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Tile from './components/Tile';
+import UncoveredTile from './components/UncoveredTile';
+import Board from './components/Board'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Board/>
   </React.StrictMode>,
   document.getElementById('root')
 );
