@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import Tile from './components/Tile';
 import UncoveredTile from './components/UncoveredTile';
 import Board from './components/Board'
+import PreApp from './components/PreApp'
+import Timer from './components/Timer'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Board/>
-  </React.StrictMode>,
+  <PreApp/>,
   document.getElementById('root')
 );
 

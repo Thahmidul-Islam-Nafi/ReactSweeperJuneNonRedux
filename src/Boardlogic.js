@@ -75,6 +75,11 @@ function gridifyAsObjects(baseArray){
     return gridifiedObjects
 }
 
+function mapToSingleIndex(inputPosition){
+    let [x,y] = inputPosition
+    return (16*y+x)
+}
+
 function getNeighbours(indexOfItem, arrayToSearch){
     let [x,y] = indexOfItem
     //console.log(x,y)
@@ -97,7 +102,16 @@ function getNeighbours(indexOfItem, arrayToSearch){
     
         })
     })
-    return neighbours
+    let singleIndexNeighBours = neighbours.map((item)=>{return {value:item.value,position:mapToSingleIndex(item.position)}})
+    return [neighbours,singleIndexNeighBours]
+}
+
+
+
+//console.log(mapToSingleIndex([6,6]))
+
+function mapToDoubleIndex(value){
+    return([value%16,(value-(value%16))/16])
 }
 
 
@@ -110,7 +124,7 @@ function generateBoardNumbers(){
 
         if(value.value !== "*"){
         let numberedValue = Number(value.value)
-        let neighbourValues = getNeighbours(value.position,preGenerated)
+        let neighbourValues = getNeighbours(value.position,preGenerated)[0]
 
         neighbourValues.forEach((value)=>{
 
@@ -137,7 +151,7 @@ let bombGenerated = generateBombs()
 let gridifiedBombs = gridifyAsObjects(bombGenerated)
 
 //console.log(getNeighbours([6,7],gridifiedBombs))
-//console.log(getNeighbours([2,0], gridifyAsObjects(generateBombs())))
+console.log(getNeighbours([2,0], gridifyAsObjects(generateBombs())))
 
 
 // let [x,y] = [6,7]
@@ -151,11 +165,39 @@ let gridifiedBombs = gridifyAsObjects(bombGenerated)
 // console.log(positionquery[2][0]===7 && positionquery[2][1]==6)
 
 
-console.table(gridify(generateBoardNumbers()))
+//console.table(gridify(generateBoardNumbers()))
 
 
-console.table(gridify(generateBoardNumbers()))
+//console.table(gridify(generateBoardNumbers()))
 
+function generateBoardNumbersAndState(){
+    let generatedNumberedBoard = []
 
+    let preGenerated  = gridifyAsObjects(generateBombs())
+    
+    preGenerated.forEach((value)=>{
 
-export {generateBoardNumbers, reinitialize}
+        if(value.value !== "*"){
+        let numberedValue = Number(value.value)
+        let neighbourValues = getNeighbours(value.position,preGenerated)[0]
+
+        neighbourValues.forEach((value)=>{
+
+            if (value.value === "*")
+                {
+                    numberedValue++
+                }
+        })
+        value.value = String(numberedValue)
+        }
+    })
+
+    const generatedBoardWithState= preGenerated.map((value,index)=>{return {...value,flag:false,uncovered:false,id:String(index)}})
+    return generatedBoardWithState
+}
+
+export {generateBoardNumbers,mapToSingleIndex, reinitialize,BombNumber,getNeighbours,mapToDoubleIndex,generateBoardNumbersAndState}
+
+console.log(generateBoardNumbers())
+
+console.log(generateBoardNumbersAndState())

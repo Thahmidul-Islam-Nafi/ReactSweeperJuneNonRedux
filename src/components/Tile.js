@@ -3,10 +3,12 @@ import React from 'react';
 import CoveredTile from './CoveredTile';
 import UncoveredTile from './UncoveredTile';
 
-const Tile = (props)=>{
+const Tile = ({TileRevealed,index,TileValue})=>{
+
+    //console.log(TileRevealed)
 
     const style = {color:"blue",
-    backgroundColor:"green",height:"25px",width:"25px",
+    backgroundColor:"green",height:"30px",width:"30px",
     
     
 }
@@ -16,21 +18,12 @@ const Tile = (props)=>{
 
 
 
-    let tileObject = {
 
-        checked:true,
-        flagged:false,
-        hasMine:false,
-        Number:false,
-        coords:[0,0]
-
-
-    }
     
     return (
-        <div style= {style}>
+        <div key={index} style= {style}>
 
-            {tileObject.checked ?  <UncoveredTile/> : <CoveredTile/>}
+            {TileRevealed ?  <UncoveredTile key={index} index={index} TileValue={TileValue}/> : <CoveredTile key={index}index={index}/>}
             
             </div>
 

@@ -1,27 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useContext} from 'react';
 import {generateBoardNumbers, reinitialize} from "../Boardlogic"
 import Tile from "./Tile"
 
+import { BoardContext,FlagONContext,CountedMinesContext } from './PreApp';
 
-
-const Board = (props)=>{
-    const [board,setBoard] = useState([])
-    const style = {backgroundColor:"black",display:"grid",gridTemplateColumns:"auto ".repeat(16),height:"560px",width:"560px",justifyContent:"space-evenly",alignContent:"space-evenly",position:"absolute", top:"140px",left:"400px"}
+const Board = ()=>{
     
-    useEffect(
-        ()=>{
-            setBoard(generateBoardNumbers())
-            console.log(board)
-        },[]
-          
-    )
+    
+ 
+    const countedMines =useContext(CountedMinesContext)
+    const flagON =useContext(FlagONContext)
+    const board = useContext(BoardContext)
+   
+    const style = {backgroundColor:"red",display:"grid",gridTemplateColumns:"auto ".repeat(16),height:"530px",width:"530px",justifyContent:"space-evenly",alignContent:"space-evenly",position:"absolute", top:"140px",left:"400px"}
+    //console.log(RevealBoardCells)
+    
+    
     return (
         
         <div style= {style}>
-            {
-                  board.map((value,index)=>{
-                      return <Tile boardTileProp= {value} index = {} />
-                  })     
+            {     
+                  board?board.map((value,index)=>{
+                      
+                      //console.log(value.id)
+                      return <Tile key={value.id} index = {index} TileRevealed= {board[index].uncovered} TileValue={board[index].value}/>
+                  }) :null    
             }
         </div>
 
@@ -33,10 +36,3 @@ const Board = (props)=>{
 export default Board
 
 
-
-// tileProp = {...value,
-//     "id":index,
-//     "checked":false,
-//      "hasMine":(value.value==="*"?true:false),
-//      "flagged":false,
-//      "clickHandler":""    }
