@@ -32,7 +32,7 @@ const PreApp = () => {
  
   const [gameOver,setGameOver] = useState(false)
   const [timerState,setTimerState] =useState("stop")
-  const style = {backgroundColor:"cyan",height:"710px"};
+  const style = {backgroundColor:"cyan",height:"100vh"};
   
   
   useEffect(() => {
