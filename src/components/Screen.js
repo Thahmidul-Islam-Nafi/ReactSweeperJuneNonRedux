@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 
 const Screen = (props)=>{
 
-    const style = {}
+    const style = {"backgroundColor":"#152238"}
      
     return (
         <div style= {style}>

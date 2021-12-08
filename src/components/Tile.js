@@ -7,8 +7,7 @@ const Tile = ({TileRevealed,index,TileValue})=>{
 
     //console.log(TileRevealed)
 
-    const style = {color:"blue",
-    backgroundColor:"green",height:"30px",width:"30px",
+    const style = {color:"#152238",height:"28px",width:"28px",
     
     
 }

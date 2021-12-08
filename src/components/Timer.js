@@ -7,7 +7,7 @@ const Timer = ()=>{
     const [hasStarted,setHasStarted] =useState(false)
     const timerState = useContext(TimerStateContext)
     const setTimerState = useContext(SetTimerStateContext)
-    const style = {color:"red"}
+    const style = {color:"cyan"}
     useEffect(()=>{
         console.log(timerState)
         if(timerState==="start"){

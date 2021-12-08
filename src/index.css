@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.top-font{
+  font-family: 'Montserrat','Courier New', Courier, monospace;
+  font-size: 30px;
+}
+
+.game-over-font{
+  font-family: 'Aleo',monospace;
+  font-size:30px;
+  padding-top:20px;
+}
+
+.uncovered-tile-font{
+  font-family: "Orbitron",monospace;
+  
+}
+
