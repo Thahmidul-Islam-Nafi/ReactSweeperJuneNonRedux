@@ -31,14 +31,16 @@ const PreApp = () => {
 
   const [gameOver, setGameOver] = useState(false);
   const [timerState, setTimerState] = useState("stop");
+  console.log(window.innerWidth)
   const style = {
-    backgroundColor: "#152238",
+    backgroundColor: "transparent",
     height: "100vh",
     width: "100vw",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems:"center"
+    alignItems: "center",
+    transform: window.screen.availWidth <= 540 ? "scale(0.5)" : "scale(1)",
   };
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const PreApp = () => {
     setBoard(generateBoardNumbersAndState());
     setTimerState("reset");
     setCountedMines(BombNumber);
-    setGameOver(false)
+    setGameOver(false);
     console.log("ResetPressed");
   }
 
@@ -81,7 +83,12 @@ const PreApp = () => {
                             <Info />
 
                             <Board />
-                            <div className="game-over-font" style={{color:"cyan"}}>{gameOver ? "Oops!" : null}</div>
+                            <div
+                              className="game-over-font"
+                              style={{ color: "cyan" }}
+                            >
+                              {gameOver ? "Oops!" : null}
+                            </div>
                           </div>
                         </SetTimerStateContext.Provider>
                       </TimerStateContext.Provider>
