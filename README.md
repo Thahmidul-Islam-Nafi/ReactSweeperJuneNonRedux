@@ -4,4 +4,4 @@
 
 ### You can access this game at https://react-minesweeper-version46.herokuapp.com/
 
-### A more responsive and better designed version of this game is coming soon!
+
